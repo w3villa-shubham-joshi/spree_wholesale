@@ -19,7 +19,7 @@ class Spree::Admin::WholesalersController < Spree::Admin::ResourceController
   end
 
   def create
-    @wholesaler = Spree::Wholesaler.new(params[:wholesaler])
+    @wholesaler = Spree::Wholesaler.new(wholesale_params)
     if @wholesaler.save
       flash[:notice] = I18n.t('spree.admin.wholesaler.success')
       redirect_to spree.admin_wholesalers_path
@@ -37,7 +37,7 @@ class Spree::Admin::WholesalersController < Spree::Admin::ResourceController
   def update
     @wholesaler = Spree::Wholesaler.find(params[:id])
 
-    if @wholesaler.update_attributes(params[:wholesaler])
+    if @wholesaler.update_attributes(wholesale_params)
       flash[:notice] = I18n.t('spree.admin.wholesaler.update_success')
     else
       flash[:error] = I18n.t('spree.admin.wholesaler.update_failed')
@@ -68,7 +68,7 @@ class Spree::Admin::WholesalersController < Spree::Admin::ResourceController
 
   def approval_setup
     @wholesaler = Spree::Wholesaler.find(params[:id])
-    @role = Spree::Role.find_or_create_by_name("wholesaler")
+    @role = Spree::Role.find_or_create_by(name: "wholesaler")
   end
 
   def collection
@@ -79,4 +79,9 @@ class Spree::Admin::WholesalersController < Spree::Admin::ResourceController
     @search = Spree::Wholesaler.ransack(params[:q])
     @collection = @search.result.page(params[:page]).per(Spree::Config[:admin_products_per_page])
   end
+
+  def wholesale_params
+    params.require(:wholesaler).permit(:ship_address, :bill_address, :company, :buyer_contact, :manager_contact, :phone, :fax, :resale_number, :taxid, :web_address, :terms, :notes, :use_billing, bill_address_attributes: [:firstname, :lastname, :address1, :address2, :city, :state_id, :zipcode, :country_id, :phone], ship_address_attributes: [:firstname, :lastname, :address1, :address2, :city, :state_id, :zipcode, :country_id, :phone], user_attributes: [:email, :password, :password_confirmation])
+  end
+
 end
