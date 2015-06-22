@@ -5,7 +5,7 @@ Spree::LineItem.class_eval do
 
   def copy_price
 
-    self.price = (order.is_wholesale? && variant.is_wholesaleable? ? variant.wholesale_price : variant.price) if variant && self.price.nil?
+    self.price = (order.is_wholesale? && variant.is_wholesaleable? ? variant.wholesale_price : variant.price) if variant
 
   end
 
