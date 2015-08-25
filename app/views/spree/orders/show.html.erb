@@ -1,18 +1,29 @@
-<div id="order">
-  <%= link_to t('back_to_store'), products_path %>
-
-  <%= render 'spree/hooks/wholesale_customer_id' %>
-
-  <% if params.has_key? :checkout_complete %>
-  	<br/><br/>
-  	<h3><%= t('thank_you_for_your_order') %></h3>
-  <% else %>
-  	<%= link_to t('my_account'), account_path if spree_current_user%>
+<% content_for :google_analytics do %>
+  <% if order_just_completed?(@order) %>
+    <%= render partial: 'spree/shared/google_purchase.js', locals: { order: @order } %>
   <% end %>
-  <br/><br/>
+<% end %>
 
-  <%= render :partial => 'shared/order_details', :locals => {:order => @order} %>
+<fieldset id="order_summary" data-hook>
+  <legend><%= Spree.t(:order_number, number: @order.number) %></legend>
+  <h1><%= accurate_title %></h1>
+  <% if order_just_completed?(@order) %>
+    <strong><%= Spree.t(:thank_you_for_your_order) %></strong>
+  <% end %>
 
-  <br/>
-  <%= link_to t('back_to_store'), products_path %>
-</div>
+  <div id="order" data-hook>
+    <%= render 'spree/hooks/wholesale_customer_id' %>
+    <%= render partial: 'spree/shared/order_details', locals: { order: @order } %>
+
+    <br class="clear" />
+
+    <p data-hook="links">
+      <%= link_to Spree.t(:back_to_store), spree.root_path, class: "button" %>
+      <% unless order_just_completed?(@order) %>
+        <% if try_spree_current_user && respond_to?(:spree_account_path) %>
+          <%= link_to Spree.t(:my_account), spree_account_path, class: "button" %>
+        <% end %>
+      <% end %>
+    </p>
+  </div>
+</fieldset>
