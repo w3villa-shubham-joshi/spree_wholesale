@@ -21,8 +21,8 @@ Gem::Specification.new do |s|
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<spree_core>, [">= 3.1.0"])
-      s.add_runtime_dependency(%q<spree_auth_devise>, ["~> 3.1.0"])
+      s.add_runtime_dependency(%q<spree_core>, ["~> 3.7.14.1"])
+      s.add_runtime_dependency(%q<spree_auth_devise>, ["~> 3.5.2"])
       s.add_development_dependency(%q<spree_sample>, ["~> 1.1.0"])
       s.add_development_dependency(%q<shoulda>, ["~> 3.1.0"])
       s.add_development_dependency(%q<dummier>, ["~> 0.3.2"])
@@ -30,8 +30,8 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<capybara>, ["~> 1.1.2"])
       s.add_development_dependency(%q<sqlite3>, ["~> 1.3.4"])
     else
-      s.add_dependency(%q<spree_core>, [">= 3.1.0"])
-      s.add_dependency(%q<spree_auth_devise>, ["~> 3.1.0"])
+      s.add_dependency(%q<spree_core>, ["~> 3.7.14.1"])
+      s.add_dependency(%q<spree_auth_devise>, ["~> 3.5.2"])
       s.add_dependency(%q<spree_sample>, ["~> 1.1.0"])
       s.add_dependency(%q<shoulda>, ["~> 3.1.0"])
       s.add_dependency(%q<dummier>, ["~> 0.3.2"])
@@ -40,8 +40,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sqlite3>, ["~> 1.3.4"])
     end
   else
-    s.add_dependency(%q<spree_core>, [">= 3.1.0"])
-    s.add_dependency(%q<spree_auth_devise>, ["~> 3.1.0"])
+    s.add_dependency(%q<spree_core>, ["~> 3.7.14.1"])
+    s.add_dependency(%q<spree_auth_devise>, ["~> 3.5.2"])
     s.add_dependency(%q<spree_sample>, ["~> 1.1.0"])
     s.add_dependency(%q<shoulda>, ["~> 3.1.0"])
     s.add_dependency(%q<dummier>, ["~> 0.3.2"])
