@@ -1,7 +1,7 @@
 Spree::CheckoutController.instance_eval do
 
-  before_filter :get_addresses
-  before_filter :remove_payments_attributes
+  before_action :get_addresses
+  before_action :remove_payments_attributes
 end
 
 Spree::CheckoutController.class_eval do
