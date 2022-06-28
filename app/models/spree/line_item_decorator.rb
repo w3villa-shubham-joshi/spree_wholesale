@@ -1,7 +1,8 @@
 Spree::LineItem.class_eval do
 
-  delegate_belongs_to :variant, :wholesale_price
-  delegate_belongs_to :variant, :is_wholesaleable?
+  belongs_to :variant
+  delegate :wholesale_price, to: :variant
+  delegate :is_wholesaleable?, to: :variant
 
   def copy_price
 
