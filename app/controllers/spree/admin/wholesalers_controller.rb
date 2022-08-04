@@ -1,6 +1,6 @@
 class Spree::Admin::WholesalersController < Spree::Admin::ResourceController
   respond_to :html, :xml
-  before_filter :approval_setup, :only => [ :approve, :reject ]
+  before_action :approval_setup, :only => [ :approve, :reject ]
 
   def index
   end
